@@ -234,6 +234,17 @@ E --> F
 F --> D
 F --> E
 ```
+# 🎛️ Django Admin Panel
+
+The project uses Django's built-in Admin Panel with **Jazzmin** to provide a modern, responsive, and user-friendly administrative interface.
+
+## Jazzmin Admin Dashboard
+
+The screenshot below shows the customized Django Admin Panel using Jazzmin.
+
+<p align="center">
+    <img src="screenshots/jazzmin-dashboard.png" alt="Jazzmin Admin Dashboard" width="900">
+</p>
 
 ---
 
