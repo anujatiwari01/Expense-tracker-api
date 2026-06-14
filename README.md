@@ -30,6 +30,7 @@ uv init
 uv add django 
 uv run djando-admin startproject config .
 uv run python manage.py startapp 
+uv sync
 uv run python manage.py runserver
 ```
 ### Installation 
@@ -309,7 +310,7 @@ http://127.0.0.1:8000/admin/
 Log in using a superuser account created with:
 
 ```bash
-python manage.py createsuperuser
+uv run python manage.py createsuperuser
 ```
 ##  JWT Authentication
 
@@ -620,7 +621,7 @@ The project dependencies are stored in a `requirements.txt` file, allowing other
 Run the following command in the project root directory:
 
 ```bash
-pip freeze > requirements.txt
+uv pip install -r requirements.txt
 ```
 
 This command lists all installed Python packages and their versions and saves them to the `requirements.txt` file.
@@ -648,3 +649,59 @@ pip install -r requirements.txt
 
 This installs every dependency required to run the project.
 
+## Swagger API Documentation Configuration
+
+The following code configures **Swagger UI** and **ReDoc** documentation for the **Expense Tracker API** using the `drf-yasg` package.
+
+```python
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Expense Tracker API",
+        default_version="v1",
+        description="API documentation for Expense Tracker System",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+```
+
+### Explanation
+
+- **`get_schema_view()`**
+  - Creates the Swagger schema view that automatically generates interactive API documentation.
+
+- **`openapi.Info()`**
+  - Provides metadata about the API that is displayed in Swagger UI and ReDoc.
+
+- **`title="Expense Tracker API"`**
+  - Sets the title of the API documentation.
+
+- **`default_version="v1"`**
+  - Specifies the current version of the API documentation.
+
+- **`description="API documentation for Expense Tracker System"`**
+  - Displays a short description explaining the purpose of the API.
+
+- **`public=True`**
+  - Makes the API documentation publicly accessible.
+
+- **`permission_classes=(permissions.AllowAny,)`**
+  - Allows anyone to access the Swagger and ReDoc documentation pages without authentication.
+
+### Output
+
+After running the server, the API documentation can be accessed through the following URLs:
+
+**Swagger UI**
+
+```
+http://127.0.0.1:8000/swagger/
+```
+
+**ReDoc**
+
+```
+http://127.0.0.1:8000/redoc/
+```
+
+These pages automatically display all registered API endpoints, request parameters, response schemas, authentication requirements, and allow developers to test the API directly from the browser.
